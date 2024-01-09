@@ -24,7 +24,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'avatar',
-        'role_id',
         'phone_number',
         'birthdate',
         'gender',
@@ -54,4 +53,10 @@ class User extends Authenticatable
         'password' => 'hashed',
         'birthdate' => 'date'
     ];
+
+    public function deleteWithRoles()
+    {
+        $this->roles()->detach(); // Detach roles
+        $this->delete(); // Delete user
+    }
 }

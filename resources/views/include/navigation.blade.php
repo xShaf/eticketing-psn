@@ -153,10 +153,13 @@
                     @if (Route::has('login'))
                         @auth
                             <a class="btn btn-navigation" href="#" role="button">
-                                <img src="assets/images/icons/user.png" width="16px" height="5%">
+                                <img src="{{ url('assets/images/icons/user.png') }}" width="16px" height="5%">
                                 Hai {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-content">
+                                @hasrole('admin')
+                                <a class="dropdown-item" href="{{ route('admin.formTo') }}">Admin</a>
+                                @endhasrole
                                 <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
                                 <a href="#" class="dropdown-item"

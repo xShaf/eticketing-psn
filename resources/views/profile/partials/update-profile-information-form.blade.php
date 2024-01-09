@@ -92,7 +92,7 @@
 
         <div class="mb-4">
             <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-            <select id="gender" name="gender" class="form-select">
+            <select id="gender" name="gender" class="form-select" placeholder="select gender">
                 <option value="male" {{ $user->gender === 'male' ? 'selected' : '' }}>Male</option>
                 <option value="female" {{ $user->gender === 'female' ? 'selected' : '' }}>Female</option>
             </select>

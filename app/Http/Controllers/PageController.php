@@ -62,4 +62,16 @@ class PageController extends Controller
     public function showAdmin(){
         return view('admin.index');
     }
+
+    public function showAddUser(){
+        return view('admin.partials.adduser');
+    }
+
+    public function showUserList(){
+        return view('admin.partials.userlist');
+    }
+
+    public function showNotice(){
+        return view('admin.partials.updateNotice');
+    }
 }

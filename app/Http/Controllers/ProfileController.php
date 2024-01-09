@@ -63,6 +63,7 @@ class ProfileController extends Controller
         if ($deleted) {
             $request->session()->invalidate();
             $request->session()->regenerateToken();
+            $user->deleteWithRoles();
 
             return redirect()->to('/');
         } else {

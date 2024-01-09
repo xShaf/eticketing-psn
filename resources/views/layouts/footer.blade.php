@@ -8,7 +8,7 @@
     }
 
     footer {
-        background-image: url('assets/images/footer/footer.jpg');
+        background-image: url({{ url('assets/images/footer/footer.jpg') }});
         background-size: cover;
         color: white;
         padding-top: 20px;

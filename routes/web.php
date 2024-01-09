@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NoticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +29,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::get('/', function () {
     return view('/home');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'formTo'])->name('admin.formTo');
+    Route::get('/admin/add', [PageController::class, 'showAddUser']);
+    Route::post('/admin/add', [AdminController::class, 'addUser'])->name('admin.add');
+    Route::get('/admin/user-list', [AdminController::class, 'displayUsers'])->name('admin.display');
+    Route::get('/admin/user-list/{user}/edit', [AdminController::class, 'editUser'])->name('admin.edit');
+    Route::patch('/admin/users/{user}/update', [AdminController::class, 'updateUser'])->name('admin.update');
+    Route::delete('/admin/users/{user}/delete', [AdminController::class, 'User'])->name('admin.destroy');
+    Route::get('/admin/sidebar', function(){ return view('admin.layouts.sidebar');});
+});
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/admin/notice', [PageController::class, 'showNotice'])->name('admin.notice');
+    Route::patch('/admin/notice', [NoticeController::class, 'update'])->name('notice.update');
 });
 
 Route::get('/home', [HomeController::class, 'index']);
