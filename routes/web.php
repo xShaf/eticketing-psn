@@ -7,6 +7,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\CarouselController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,17 +40,22 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'formTo'])->name('admin.formTo');
     Route::get('/admin/add', [PageController::class, 'showAddUser']);
-    Route::post('/admin/add', [AdminController::class, 'addUser'])->name('admin.add');
-    Route::get('/admin/user-list', [AdminController::class, 'displayUsers'])->name('admin.display');
-    Route::get('/admin/user-list/{user}/edit', [AdminController::class, 'editUser'])->name('admin.edit');
-    Route::patch('/admin/users/{user}/update', [AdminController::class, 'updateUser'])->name('admin.update');
-    Route::delete('/admin/users/{user}/delete', [AdminController::class, 'User'])->name('admin.destroy');
-    Route::get('/admin/sidebar', function(){ return view('admin.layouts.sidebar');});
+    Route::post('/admin/add', [AdminController::class, 'addUser'])->name('user.add');
+    Route::get('/admin/edit', [PageController::class, 'showUserEdit'])->name('user.edit');
+    Route::get('/admin/user-list', [AdminController::class, 'displayUsers'])->name('user.display');
+    Route::get('/admin/user-list/{user}/edit', [AdminController::class, 'editUser'])->name('user.edit');
+    Route::patch('/admin/users/{user}/update', [AdminController::class, 'updateUser'])->name('user.update');
+    Route::delete('/admin/users/{user}/delete', [AdminController::class, 'User'])->name('user.destroy');
 });
 
 Route::middleware(['role:admin'])->group(function () {
     Route::get('/admin/notice', [PageController::class, 'showNotice'])->name('admin.notice');
     Route::patch('/admin/notice', [NoticeController::class, 'update'])->name('notice.update');
+
+    Route::get('/admin/carousel', [PageController::class, 'show'])->name('carousel.index');
+    Route::get('/admin/carousel/store', [CarouselController::class, 'add'])->name('carousel.store');
+    Route::post('/admin/carousel/store', [CarouselController::class, 'store'])->name('carousel.storing');
+    Route::delete('/admin/carousel/{carousel}/delete', [CarouselController::class, 'destroy'])->name('carousel.delete');
 });
 
 Route::get('/home', [HomeController::class, 'index']);

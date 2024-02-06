@@ -49,7 +49,7 @@
                     Update {{ $user->name }} information
                 </p>
             </header>
-            <form method="post" action="{{ route('admin.update', ['user' => $user]) }}" enctype="multipart/form-data"
+            <form method="post" action="{{ route('user.update', ['user' => $user]) }}" enctype="multipart/form-data"
                 class="mt-6 space-y-6">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="patch">

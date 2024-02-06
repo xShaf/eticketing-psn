@@ -48,20 +48,20 @@ class AdminController extends BaseController
 
         event(new Registered($user));
 
-        return Redirect::route('admin.add')->with('status', 'user-added');
+        return Redirect::route('user.add')->with('status', 'user-added');
     }
 
     public function displayUsers(): View
     {
         $users = User::all();
 
-        return view('admin.partials.userlist', compact('users'));
+        return view('admin.partials.users.userlist', compact('users'));
     }
 
     public function editUser(User $user)
     {
         $roles = Role::all();
-        return view('admin.partials.edituser', compact('user', 'roles'));
+        return view('admin.partials.users.edituser', compact('user', 'roles'));
     }
 
     public function updateUser(Request $request, User $user)
@@ -91,7 +91,7 @@ class AdminController extends BaseController
 
         $user->save();
 
-        return redirect()->route('admin.display')->with('status', 'user-updated');
+        return redirect()->route('user.display')->with('status', 'user-updated');
     }
 
     public function destroyUser(Request $request, User $user)
@@ -99,6 +99,6 @@ class AdminController extends BaseController
         $user->roles()->detach();
         $deleted = DB::table('users')->where('id', $user->id)->delete();
 
-        return Redirect::route('admin.display')->with('status', 'user-deleted');
+        return Redirect::route('user.display')->with('status', 'user-deleted');
     }
 }

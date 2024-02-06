@@ -1,4 +1,5 @@
 @extends('layouts.index')
+
 @section('content')
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
@@ -37,24 +38,21 @@
             }
         }
     </style>
-    <div class="container kotak naik" style="background-color: whitel">
-        @can('add-user')
-            <div class="bg-light m-4 p-4 rounded border border-secondary shadow">
-                <a name="" id="" class="btn btn-primary" href="{{ route('user.add') }}" role="button">Add new
-                    user</a>
-            </div>
-        @endcan
 
-        @can('read-user')
-            <div class="bg-light m-4 p-4 rounded border border-secondary shadow">
-                <a name="" id="" class="btn btn-primary" href="{{{ route('user.display') }}}" role="button">User list</a>
-            </div>
-        @endcan
+    <div class="container kotak naik">
+        <label for="name" id="name" class="form-label">Name</label>
+        <input type="text" id="name" name="name" class="form-control" required autofocus
+            placeholder="Enter carousel name">
+        <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
-        <div class="bg-light m-4 p-4 rounded border border-secondary shadow">
-            <a name="" id="" class="btn btn-primary" href="{{{ route('notice.update') }}}" role="button">Update Notice</a>
-        </div>
+        <label for="carousel_data" id="name" class="form-label">Images</label>
+        <input type="file" id="carousel_data" id="carousel_data" name="carousel_data" class="form-control" required
+            placeholder="Seelec carousel image">
+        <x-input-error :messages="$errors->get('carousel_data')" class="mt-2" />
 
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>
 
     </div>
 @endsection

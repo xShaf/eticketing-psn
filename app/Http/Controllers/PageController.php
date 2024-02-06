@@ -64,14 +64,22 @@ class PageController extends Controller
     }
 
     public function showAddUser(){
-        return view('admin.partials.adduser');
+        return view('admin.partials.users.add');
+    }
+
+    public function showUserEdit(){
+        return view('admin.partials.users.edit');
     }
 
     public function showUserList(){
-        return view('admin.partials.userlist');
+        return view('admin.partials.users.userlist');
     }
 
     public function showNotice(){
-        return view('admin.partials.updateNotice');
+        return view('admin.partials.notice.update');
+    }
+
+    public function showCarousel(){
+        return view('admin.partials.carousel.add');
     }
 }

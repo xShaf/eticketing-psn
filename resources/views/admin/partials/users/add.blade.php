@@ -11,7 +11,7 @@
         }
 
         .kotak {
-            background-color: #f8f8f8;
+            background-color: #f8adf8f8;
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
@@ -44,7 +44,7 @@
 
 
     <div class="container kotak naik" style="background-color:white;">
-        <form action="{{ route('admin.add') }}" method="post" class="sign-up-form" autocomplete="off">
+        <form action="{{ route('user.add') }}" method="post" class="sign-up-form" autocomplete="off">
             @csrf
 
             <h2 class="title">Add User</h2>

@@ -60,7 +60,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->roles->implode('name', ', ') }}</td>
                         <td>
-                            <a href="{{ route('admin.edit', ['user' => $user]) }}" class="btn btn-primary">Update</a>
+                            <a href="{{ route('user.edit', ['user' => $user]) }}" class="btn btn-primary">Update</a>
 
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#confirm-user-deletion">
@@ -70,7 +70,7 @@
                                 aria-labelledby="confirm-user-deletion-label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content p-4">
-                                        <form action="{{ route('admin.destroy', ['user' => $user]) }}" method="post"
+                                        <form action="{{ route('user.destroy', ['user' => $user]) }}" method="post"
                                             style="display: inline-block">
                                             @csrf
                                             @method('delete')
@@ -102,7 +102,7 @@
             </tbody>
         </table>
         @can('add-user')
-            <a name="" id="" class="btn btn-primary" href="{{ route('admin.add') }}" role="button"><i
+            <a name="" id="" class="btn btn-primary" href="{{ route('user.add') }}" role="button"><i
                     class="bi bi-plus-circle-fill"></i>Add user</a>
 
             <a href="{{ url('admin') }}" class="btn btn-secondary">Go Back</a>

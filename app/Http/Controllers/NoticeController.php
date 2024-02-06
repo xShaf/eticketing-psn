@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Notice;
+use Illuminate\Support\Facades\Redis;
 
 class NoticeController extends Controller
 {
@@ -73,8 +74,8 @@ class NoticeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $deleted = DB::table('users')->where('id', $user->id)->delete();
     }
 }

@@ -38,11 +38,12 @@
             }
         }
     </style>
+
     <div class="container kotak naik">
         <h2 class="title">Update Notice Modal</h2>
         <form action="{{ route('notice.update') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="_method" value="patch">
+
             <label for="name" class="form-label mt-4">Name</label>
             <input id="name" type="name" name="name" class="form-control" required autofocus
                 placeholder="Enter notice name">
@@ -52,22 +53,6 @@
             <input type="file" id="image_data" name="image_data" accept="image/*" class="form-control" required autofocus
                 placeholder="Select images">
             <x-input-error :messages="$errors->get('image_data')" class="mt-2" />
-
-            <div class="mt-4">
-                <label>Current Image Preview:</label>
-                @php
-                    $latestNoticeImage = app('App\Http\Controllers\NoticeController')->showLatest();
-                @endphp
-
-                @if ($latestNoticeImage)
-                    <a href="{{ $latestNoticeImage }}" target="_blank">
-                        <img src="{{ $latestNoticeImage }}" alt="Latest Notice Image"
-                            style="max-width: 100%; max-height: 100%">
-                    </a>
-                @else
-                    <p>No latest notice image available</p>
-                @endif
-            </div>
 
             <button type="submit" class="btn btn-primary mt-4">
                 Change Notice
