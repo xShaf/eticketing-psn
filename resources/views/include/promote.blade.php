@@ -1,21 +1,18 @@
 <div id="promotion" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-bs-target="#promotion" data-bs-slide-to="0" class="active" aria-current="true"
-            aria-label="First slide"></li>
-        <li data-bs-target="#promotion" data-bs-slide-to="1" aria-label="Second slide"></li>
-        <li data-bs-target="#promotion" data-bs-slide-to="2" aria-label="Third slide"></li>
+        @foreach ($carousels as $key => $carousel)
+            <li data-bs-target="#promotion" data-bs-slide-to="{{ $key }}"
+                @if ($key === 0) class="active" @endif aria-current="true"
+                aria-label="Slide {{ $key + 1 }}"></li>
+        @endforeach
     </ol>
     <div class="carousel-inner" role="listbox">
-        <div class="carousel-item active">
-            <img src="assets/images/carousel/POSTER-NO-PHON-ERROR-4.png" class="d-block w-100" alt="Image 1">
-        </div>
-        <div class="carousel-item">
-            <img src="assets/images/carousel/PSN_WEBBANNER_FASILITATORVACANCY.jpg" class="d-block w-100" alt="Image 2">
-        </div>
-        <div class="carousel-item">
-            <img src="assets/images/carousel/WhatsApp-Image-2023-10-04-at-14.57.32.jpeg" class="d-block w-100"
-                alt="Image 3">
-        </div>
+        @foreach ($carousels as $key => $carousel)
+            <div class="carousel-item @if ($key === 0) active @endif">
+                <img src="{{ url('storage/carousel_data/' . $carousel->carousel_data) }}" class="d-block w-100"
+                    alt="Carousel Image {{ $key + 1 }}">
+            </div>
+        @endforeach
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#promotion" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

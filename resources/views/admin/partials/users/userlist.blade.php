@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('admin.layouts.index')
 
 @section('content')
     <style>
@@ -103,9 +103,7 @@
         </table>
         @can('add-user')
             <a name="" id="" class="btn btn-primary" href="{{ route('user.add') }}" role="button"><i
-                    class="bi bi-plus-circle-fill"></i>Add user</a>
-
-            <a href="{{ url('admin') }}" class="btn btn-secondary">Go Back</a>
+                    class="bi bi-person-plus"></i> Add user</a>
         @endcan
     </div>
 @endsection

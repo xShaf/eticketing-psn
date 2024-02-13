@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('admin.layouts.index')
 @section('content')
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
@@ -37,24 +37,8 @@
             }
         }
     </style>
-    <div class="container kotak naik" style="background-color: whitel">
-        @can('add-user')
-            <div class="bg-light m-4 p-4 rounded border border-secondary shadow">
-                <a name="" id="" class="btn btn-primary" href="{{ route('user.add') }}" role="button">Add new
-                    user</a>
-            </div>
-        @endcan
-
-        @can('read-user')
-            <div class="bg-light m-4 p-4 rounded border border-secondary shadow">
-                <a name="" id="" class="btn btn-primary" href="{{{ route('user.display') }}}" role="button">User list</a>
-            </div>
-        @endcan
-
-        <div class="bg-light m-4 p-4 rounded border border-secondary shadow">
-            <a name="" id="" class="btn btn-primary" href="{{{ route('notice.update') }}}" role="button">Update Notice</a>
-        </div>
-
+    <div class="container kotak naik" style="background-color: white">
 
     </div>
+
 @endsection

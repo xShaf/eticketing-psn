@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\PurchaseController;
+use App\Models\Carousel;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-Route::get('/', function () {
-    return view('/home');
-});
+Route::get('/', [PageController::class, 'home']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'formTo'])->name('admin.formTo');
@@ -45,20 +45,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/user-list', [AdminController::class, 'displayUsers'])->name('user.display');
     Route::get('/admin/user-list/{user}/edit', [AdminController::class, 'editUser'])->name('user.edit');
     Route::patch('/admin/users/{user}/update', [AdminController::class, 'updateUser'])->name('user.update');
-    Route::delete('/admin/users/{user}/delete', [AdminController::class, 'User'])->name('user.destroy');
+    Route::delete('/admin/users/{user}/delete', [AdminController::class, 'destroyUser'])->name('user.destroy');
 });
 
 Route::middleware(['role:admin'])->group(function () {
-    Route::get('/admin/notice', [PageController::class, 'showNotice'])->name('admin.notice');
-    Route::patch('/admin/notice', [NoticeController::class, 'update'])->name('notice.update');
+    Route::get('/admin/splash', [PageController::class, 'showNotice'])->name('admin.notice');
+    Route::patch('/admin/splash', [NoticeController::class, 'update'])->name('notice.update');
 
-    Route::get('/admin/carousel', [PageController::class, 'show'])->name('carousel.index');
-    Route::get('/admin/carousel/store', [CarouselController::class, 'add'])->name('carousel.store');
-    Route::post('/admin/carousel/store', [CarouselController::class, 'store'])->name('carousel.storing');
+    Route::get('/admin/carousel', [CarouselController::class, 'index'])->name('carousel.index');
+    Route::get('/admin/carousel/add', [CarouselController::class, 'add'])->name('carousel.add');
+    Route::post('/admin/carousel/store', [CarouselController::class, 'store'])->name('carousel.store');
     Route::delete('/admin/carousel/{carousel}/delete', [CarouselController::class, 'destroy'])->name('carousel.delete');
+    Route::get('/admin/sidebar', [PageController::class, 'showSidebar'])->name('admin.sidebar');
 });
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [PageController::class, 'home']);
 
 Route::get('/profile-korporat', [PageController::class, 'showProfileKorporat']);
 Route::get('/carta-organisasi', [PageController::class, 'showCartaOrganisasi']);
@@ -76,4 +77,8 @@ Route::get('/merancang-lawatan', [PageController::class, 'showMerancangLawatan']
 Route::get('/pelan-pembangunan', [PageController::class, 'showPelanBangunanPusatSainsNegara']);
 Route::get('/soalan-lazim', [PageController::class, 'showSoalanLazim']);
 Route::get('/waktu-operasi', [PageController::class, 'showWaktuOperasi']);
-Route::get('/access', [PageController::class, 'showAccess']);
+Route::get('/access', [PageController::class, 'showAccess'])->middleware('guest');
+
+Route::middleware('auth')->group(function(){
+    Route::get('/forms', [PurchaseController::class, 'index']);
+});

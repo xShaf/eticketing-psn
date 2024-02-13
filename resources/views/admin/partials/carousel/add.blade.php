@@ -40,19 +40,26 @@
     </style>
 
     <div class="container kotak naik">
-        <label for="name" id="name" class="form-label">Name</label>
-        <input type="text" id="name" name="name" class="form-control" required autofocus
-            placeholder="Enter carousel name">
-        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        <h2>Add new carousel</h2>
+        <form action="{{ route('carousel.store') }}" method="post" enctype="multipart/form-data" autocomplete="off">
+            @csrf
 
-        <label for="carousel_data" id="name" class="form-label">Images</label>
-        <input type="file" id="carousel_data" id="carousel_data" name="carousel_data" class="form-control" required
-            placeholder="Seelec carousel image">
-        <x-input-error :messages="$errors->get('carousel_data')" class="mt-2" />
+            <label for="name" id="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required autofocus
+                placeholder="Enter carousel name">
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
-        <button type="submit" class="btn btn-primary">
-            Save
-        </button>
+            <label for="carousel_data" id="name" class="form-label">Images</label>
+            <input type="file" id="carousel_data" id="carousel_data" accept="image/*" name="carousel_data"
+                class="form-control" required placeholder="Select carousel image">
+            <x-input-error :messages="$errors->get('carousel_data')" class="mt-2" />
 
+            <br>
+            <button type="submit" class="btn btn-primary">
+                Save
+            </button>
+            <a name="" id="" class="btn btn-secondary" href="{{ route('carousel.index') }}" role="button">Back</a>
+
+        </form>
     </div>
 @endsection

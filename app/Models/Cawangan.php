@@ -15,5 +15,5 @@ class Cawangan extends Model
         'address',
         'email',
         'contact_number'
-    ]
+    ];
 }

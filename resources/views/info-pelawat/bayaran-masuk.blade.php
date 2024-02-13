@@ -176,7 +176,7 @@
                         <td>6.00</td>
                     </tr>
                     <tr class="">
-                        <td scope="row">Kanak-kanak (3 tahun ke bawah) & Orang Kelainan Upay</td>
+                        <td scope="row">Kanak-kanak (3 tahun ke bawah) & Orang Kelainan Upaya</td>
                         <td>Percuma</td>
                     </tr>
 
@@ -192,7 +192,7 @@
             <table class="table table-light">
                 <thead>
                     <tr>
-                        <th colspan="3"><strong>Pusat Sains Negara Kuala Lumpur</strong></th>
+                        <th colspan="3"><strong>Pusat Sains Negara Cawangan Wilayah Utara (Kedah)</strong></th>
                     </tr>
                 </thead>
                 <tbody>

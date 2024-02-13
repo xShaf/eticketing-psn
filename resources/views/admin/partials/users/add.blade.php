@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('admin.layouts.index')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -100,9 +100,9 @@
             </div>
 
             <x-primary-button class="btn btn-primary">
-                Add User
+                <i class="bi bi-person-plus"></i></i> Add User
             </x-primary-button>
-            <a href="{{ url('admin/user-list') }}" class="btn btn-secondary">Go Back</a>
+
             @if (session('status') === 'user-added')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-success">
                     The user has been added</p>

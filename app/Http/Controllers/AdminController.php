@@ -61,7 +61,7 @@ class AdminController extends BaseController
     public function editUser(User $user)
     {
         $roles = Role::all();
-        return view('admin.partials.users.edituser', compact('user', 'roles'));
+        return view('admin.partials.users.edit', compact('user', 'roles'));
     }
 
     public function updateUser(Request $request, User $user)

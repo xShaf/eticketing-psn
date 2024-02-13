@@ -67,6 +67,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarID">
+            @if (request()->is('admin/*') || request()->is('admin'))
+                @role('admin')
+                    <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                        aria-controls="offcanvasExample">
+                        <i class="bi bi-list fs-5"></i>
+                    </button>
+                @endrole
+            @endif
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -152,13 +160,13 @@
                 <li class="nav-item dropdown">
                     @if (Route::has('login'))
                         @auth
-                            <a class="btn btn-navigation" href="#" role="button">
-                                <img src="{{ url('assets/images/icons/user.png') }}" width="16px" height="5%">
+                            <a class="btn btn-navigation align-content-center" href="#" role="button">
+                                <i class="bi bi-person-circle"></i>
                                 Hai {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-content">
                                 @hasrole('admin')
-                                <a class="dropdown-item" href="{{ route('admin.formTo') }}">Admin</a>
+                                    <a class="dropdown-item" href="{{ route('admin.formTo') }}">Admin</a>
                                 @endhasrole
                                 <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a>
@@ -183,4 +191,3 @@
         </div>
     </div>
 </nav>
-
